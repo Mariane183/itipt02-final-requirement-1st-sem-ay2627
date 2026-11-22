@@ -1,15 +1,185 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
+/* ==========================================================
+   1. MASTER GLOBAL STYLES & LAYOUT
+   ================================================---------- */
+$bg-color: #f8fafc;
+$card-bg: #ffffff;
+$text-main: #1e293b;
+$text-muted: #64748b;
+$primary: #3b82f6;
+
+.page-container {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-main;
+  margin-bottom: 12px;
+}
+
+.custom-card {
+  background: $card-bg;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 12px;
+
+  h3 { font-size: 15px; font-weight: 600; color: $text-main; margin: 0 0 6px 0; }
+  p { font-size: 13px; color: $text-muted; margin: 2px 0; }
+  
+  .badge {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 10px;
+    font-weight: 600;
+    border-radius: 4px;
+    margin-top: 6px;
+    
+    &.pending { background: #fef3c7; color: #d97706; }
+    &.success { background: #d1fae5; color: #059669; }
+  }
+}
+
+.header-back-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  ion-icon { font-size: 22px; }
+}
+
+
+/* ==========================================================
+   2. GLOBAL FIXED BOTTOM NAVIGATION (Malaki at Pantay)
+   ================================================---------- */
+.global-bottom-nav {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 65px !important;
+  background-color: #ffffff !important;
+  border-top: 1px solid #e2e8f0 !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  z-index: 999999 !important;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08) !important;
+
+  .nav-item {
+    background: transparent !important;
+    border: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #94a3b8 !important;
+    flex: 1 !important;
+    height: 100% !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    ion-icon {
+      font-size: 26px !important; // Malaking icon
+      line-height: 1 !important;
+      margin-bottom: 3px !important;
+    }
+
+    span {
+      font-size: 12px !important; // Malaking teksto
+      font-weight: 500 !important;
+      line-height: 1 !important;
+    }
+
+    &.active, &:hover {
+      color: #3b82f6 !important;
+      
+      span {
+        font-weight: 600 !important;
+      }
+    }
+  }
+}
+
+
+/* ==========================================================
+   3. COMPREHENSIVE DARK MODE OVERRIDE (Buong App)
+   ================================================---------- */
+body.dark {
+  ion-content, ion-toolbar, ion-header, ion-footer {
+    --background: #0f172a !important;
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+  }
+
+  button, ion-button, .nav-item, .back-btn, .header-back-btn, .theme-toggle-btn {
+    background-color: transparent !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+  }
+
+  div, ion-card, .custom-card, .stat-card, .cfa-card {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border-color: #334155 !important;
+  }
+
+  h1, h2, h3, h4, h5, h6, strong, .section-title {
+    color: #f8fafc !important;
+  }
+
+  p, span, label {
+    color: #94a3b8 !important;
+  }
+
+  .global-bottom-nav {
+    background-color: #1e293b !important;
+    border-top: 1px solid #334155 !important;
+
+    .nav-item {
+      color: #94a3b8 !important;
+
+      &.active, &:hover {
+        color: #3b82f6 !important;
+      }
+    }
+  }
+}
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
  */
 
-/* Core CSS required for Ionic components to work properly */
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
+
 @import "@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
