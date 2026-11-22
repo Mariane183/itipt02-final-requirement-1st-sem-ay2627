@@ -7,9 +7,12 @@ from datetime import datetime
 
 app = FastAPI()
 
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost:8103"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -46,7 +49,7 @@ def write_audit_log(conn, action: str, details: str, user_id: Optional[int] = No
             row = u_cur.fetchone()
             u_cur.close()
             if not row:
-                print("Audit log skipped: no user record in the users table.")
+                print("Audit log skipped: walang user record sa users table.")
                 return
             resolved_user_id = row[0]
 
@@ -109,11 +112,11 @@ def signup(data: SignupModel):
     try:
         cursor.execute("SELECT user_id FROM users WHERE contact_number = %s", (data.phone_number,))
         if cursor.fetchone():
-            raise HTTPException(status_code=400, detail="Used phone number choose another.")
+            raise HTTPException(status_code=400, detail="Ang phone number na ito ay nakarehistro na.")
 
         cursor.execute("SELECT user_id FROM users WHERE email = %s", (data.email,))
         if cursor.fetchone():
-            raise HTTPException(status_code=400, detail="This email is being used by other resident.")
+            raise HTTPException(status_code=400, detail="Ang email na ito ay nagamit na ng ibang residente.")
 
         query = "INSERT INTO users (username, contact_number, email, password, role) VALUES (%s, %s, %s, %s, 'resident')"
         cursor.execute(query, (data.full_name, data.phone_number, data.email, data.password))
@@ -143,43 +146,13 @@ def login(data: LoginModel):
         user = cursor.fetchone()
 
         if not user:
-            raise HTTPException(status_code=400, detail="Incorrect username or password.")
+            raise HTTPException(status_code=400, detail="Mali ang buong pangalan o password.")
 
         return {
             "message": "Login Successful!",
             "user_id": user['user_id'],
             "role": user['role'],
             "username": user['username']
-        }
-    except HTTPException as he:
-        raise he
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
-    finally:
-        cursor.close()
-        conn.close()
-
-
-@app.post("/api/admin/login")
-def admin_login(data: LoginModel):
-    conn = get_db_connection()
-    if not conn:
-        raise HTTPException(status_code=500, detail="Database connection failed")
-
-    cursor = conn.cursor(dictionary=True)
-    try:
-        query = "SELECT * FROM users WHERE username = %s AND password = %s AND LOWER(role) = 'admin'"
-        cursor.execute(query, (data.username, data.password))
-        admin_user = cursor.fetchone()
-
-        if not admin_user:
-            raise HTTPException(status_code=401, detail="Invalid admin credentials or unauthorized role.")
-
-        return {
-            "message": "Admin Login Successful!",
-            "user_id": admin_user['user_id'],
-            "role": admin_user['role'],
-            "username": admin_user['username']
         }
     except HTTPException as he:
         raise he
@@ -233,7 +206,7 @@ def create_complaint(data: ComplaintModel):
             data.evidence_image
         ))
         conn.commit()
-        return {"message": "Complaints and evidence succesfuly submitted!"}
+        return {"message": "Reklamo at ebidensya ay matagumpay na naisumite!"}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
     finally:
@@ -241,6 +214,7 @@ def create_complaint(data: ComplaintModel):
         conn.close()
 
 
+# --- PAGKUHA NG MGA REKLAMO (MAY SUPORTA SA include_archived) ---
 @app.get("/api/complaints")
 def get_all_complaints(include_archived: bool = False):
     conn = get_db_connection()
@@ -310,7 +284,7 @@ def update_complaint_status(complaint_id: int, data: StatusUpdateModel):
             details=f"Case #{complaint_id}: status -> '{new_status}', notes -> '{new_notes or ''}'"
         )
         conn.commit()
-        return {"message": "Success updating this case."}
+        return {"message": "Matagumpay na nabago ang status ng kaso."}
     except HTTPException as he:
         raise he
     except Exception as e:
@@ -345,7 +319,7 @@ def update_complaint_details(complaint_id: int, data: ComplaintUpdate):
         )
         conn.commit()
 
-        return {"message": "Successful update of complaints status!"}
+        return {"message": "Matagumpay na na-update ang kaso at status!"}
     except HTTPException as he:
         raise he
     except Exception as e:
@@ -380,6 +354,31 @@ def toggle_archive_complaint(complaint_id: int, data: ArchiveUpdateModel):
         conn.commit()
         action = "na-archive" if archived_val == 1 else "na-unarchive"
         return {"message": f"Matagumpay na {action} ang kaso.", "is_archived": data.is_archived}
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.delete("/api/complaints/{complaint_id}")
+def delete_complaint(complaint_id: int):
+    conn = get_db_connection()
+    if not conn:
+        raise HTTPException(status_code=500, detail="Database connection failed")
+
+    cursor = conn.cursor()
+    try:
+        cursor.execute("SELECT complaint_id FROM complaints WHERE complaint_id = %s", (complaint_id,))
+        existing = cursor.fetchone()
+        if not existing:
+            raise HTTPException(status_code=404, detail="Hindi nahanap ang kaso.")
+
+        cursor.execute("DELETE FROM complaints WHERE complaint_id = %s", (complaint_id,))
+        conn.commit()
+        return {"message": "Matagumpay na nabura ang kaso."}
     except HTTPException as he:
         raise he
     except Exception as e:
