@@ -1,0 +1,192 @@
+$bg-color: #f8fafc;
+$card-bg: #ffffff;
+$text-main: #1e293b;
+$text-muted: #64748b;
+$primary: #3b82f6;
+$success: #10b981;
+$warning: #f59e0b;
+$cfa: #6366f1;
+
+.theme-toggle-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-right: 12px;
+  color: #ffffff;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  ion-icon {
+    font-size: 20px;
+  }
+}
+
+ion-content {
+  --background: #{$bg-color};
+  --padding-bottom: 90px;
+}
+
+.section-title, .greeting-text, .section-subtitle{
+  text-align: center !important;
+  width: 100%;
+  display: block;
+}
+
+.home-container {
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  .welcome-section {
+    margin-bottom: 24px;
+    h2 { font-size: 20px; font-weight: 700; color: var(--text-main, #1e293b); margin: 0 0 4px 0; }
+    p { font-size: 14px; color: var(--text-muted, #64748b); margin: 0; }
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main, #1e293b);
+    margin-bottom: 12px;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+
+    .stat-card {
+      background: var(--card-bg, #ffffff);
+      padding: 16px 12px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-top: 4px solid $primary;
+
+      &.pending { border-top-color: $warning; }
+      &.resolved { border-top-color: $success; }
+      &.cfa { border-top-color: $cfa; }
+
+      .stat-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-muted, #64748b);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+
+      .stat-number-total,
+      .stat-number-pending,
+      .stat-number-resolved,
+      .stat-number-cfa {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text-main, #1e293b);
+        margin: 0;
+      }
+
+      .stat-number-cfa {
+        color: $cfa;
+      }
+    }
+  }
+
+  .quick-action-box {
+    background: var(--card-bg, #ffffff);
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid $primary;
+
+    p {
+      font-size: 13px;
+      color: var(--text-muted, #64748b);
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+}
+
+:host-context(body.dark) {
+  ion-content {
+    --background: #0f172a !important;
+  }
+  .welcome-section h2, .section-title, .stat-number-total, .stat-number-pending, .stat-number-resolved {
+    color: #f8fafc !important;
+  }
+  .stat-number-cfa {
+    color: #a5b4fc !important;
+  }
+  .welcome-section p, .stat-label, .quick-action-box p {
+    color: #94a3b8 !important;
+  }
+  .stat-card, .quick-action-box {
+    background: #1e293b !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2) !important;
+  }
+}
+
+.global-bottom-nav {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 60px !important;
+  background-color: var(--nav-bg, #ffffff) !important;
+  border-top: 1px solid #e2e8f0 !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  z-index: 99999 !important;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05) !important;
+
+  .nav-item {
+    background: transparent !important;
+    border: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #94a3b8 !important;
+    flex: 1 !important;
+    height: 100% !important;
+    cursor: pointer !important;
+
+    ion-icon {
+      font-size: 20px !important;
+      margin-bottom: 2px !important;
+    }
+
+    span {
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    &.active, &:hover {
+      color: #3b82f6 !important;
+      font-weight: 600 !important;
+    }
+  }
+}
+
+
+:host-context(body.dark) {
+  .global-bottom-nav {
+    background-color: #1e293b !important;
+    border-top: 1px solid #334155 !important;
+  }
+}
