@@ -1,0 +1,7 @@
+{
+  "name": "resident-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

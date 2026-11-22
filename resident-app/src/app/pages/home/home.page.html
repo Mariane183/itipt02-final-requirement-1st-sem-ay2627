@@ -1,0 +1,47 @@
+<ion-content class="home-content ion-padding">
+  <div class="home-container">
+    <div class="home-header">
+      <h2>Barangay Portal</h2>
+      <p>Maligayang pagdating, <strong class="highlight-name">{{ residentName }}</strong>!</p>
+    </div>
+
+    <div class="home-body">
+      <div class="welcome-card">
+        <h3>Magandang Araw, <span class="highlight-name">{{ residentName }}</span>!</h3>
+        <p>Gamitin ang menu sa ibaba para sa mabilis na pag-navigate ng iyong mga reklamo at abiso.</p>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<div class="fb-fixed-footer">
+  <div class="fb-nav-container">
+    <button type="button" class="fb-nav-btn active-btn" (click)="goToHome()">
+      <ion-icon name="home-outline"></ion-icon>
+      <span>Home</span>
+    </button>
+
+    <button type="button" class="fb-nav-btn" (click)="goToComplaint()">
+      <ion-icon name="document-text-outline"></ion-icon>
+      <span>Reklamo</span>
+    </button>
+
+    <button type="button" class="fb-nav-btn" (click)="goToMyComplaints()">
+      <ion-icon name="list-outline"></ion-icon>
+      <span>Listahan</span>
+    </button>
+
+    <button type="button" class="fb-nav-btn" (click)="goToNotifications()">
+      <div class="icon-wrapper" style="position: relative; display: flex; align-items: center; justify-content: center;">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <span class="fb-badge" *ngIf="unreadCount > 0" style="position: absolute; top: -6px; right: -10px; background-color: #e11d48; color: #ffffff; font-size: 9px; font-weight: 800; padding: 1px 5px; border-radius: 10px; border: 2px solid #ffffff; min-width: 16px; text-align: center;">{{ unreadCount }}</span>
+      </div>
+      <span>Abiso</span>
+    </button>
+
+    <button type="button" class="fb-nav-btn" (click)="goToProfile()">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>Profile</span>
+    </button>
+  </div>
+</div>

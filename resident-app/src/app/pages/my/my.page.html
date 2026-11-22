@@ -1,0 +1,84 @@
+<ion-content class="my-complaints-content ion-padding">
+  <!-- Pull to refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingText="Hilahin para i-refresh..." refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div class="container">
+    <div class="header-title">
+      <h2>List of my complaints</h2>
+      <p>Track status of your barangagy complaints</p>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="state-box">
+      <p>Collecting Complaints...</p>
+    </div>
+
+    
+    <div *ngIf="!isLoading && myComplaints.length === 0" class="empty-state">
+      <ion-icon name="document-text-outline"></ion-icon>
+      <p>Wala ka pang naisusumiteng reklamo.</p>
+      <button type="button" class="add-btn" (click)="goToComplaint()">Mag-file ng Reklamo Ngayon</button>
+    </div>
+
+    <!-- Complaints List -->
+    <div *ngIf="!isLoading && myComplaints.length > 0" class="complaint-list">
+      <div *ngFor="let item of myComplaints" class="complaint-card">
+        
+        <div class="card-top">
+          <span class="case-id">Kaso #{{ item.complaint_id || item.id }}</span>
+          <span class="status-badge" [ngClass]="{
+            'pending': item.status === 'Pending',
+            'progress': item.status === 'In Progress' || item.status === 'Ongoing',
+            'resolved': item.status === 'Resolved' || item.status === 'Closed'
+          }">
+            {{ item.status }}
+          </span>
+        </div>
+
+        <div class="card-body">
+          <p><strong>Isinakdal:</strong> {{ item.respondent_name }}</p>
+          <p><strong>Detalye:</strong> {{ item.complaint_details }}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- Ionic Native Footer para hindi matakpan at 100% clickable -->
+<ion-footer class="ion-no-border fb-native-footer">
+  <div class="fb-nav-container">
+    
+    <button type="button" class="fb-nav-btn" (click)="goToHome(); $event.stopPropagation()">
+      <ion-icon name="home-outline"></ion-icon>
+      <span>Home</span>
+    </button>
+
+    <button type="button" class="fb-nav-btn" (click)="goToComplaint(); $event.stopPropagation()">
+      <ion-icon name="document-text-outline"></ion-icon>
+      <span>Reklamo</span>
+    </button>
+
+    <button type="button" class="fb-nav-btn active-btn" (click)="goToMyComplaints(); $event.stopPropagation()">
+      <ion-icon name="list-outline"></ion-icon>
+      <span>Listahan</span>
+    </button>
+
+     <button type="button" class="fb-nav-btn" (click)="goToNotifications()">
+       <div class="icon-wrapper" style="position: relative; display: flex; align-items: center; justify-content: center;">
+          <ion-icon name="notifications-outline"></ion-icon>
+          <span class="fb-badge" *ngIf="unreadCount > 0" style="position: absolute; top: -6px; right: -10px; background-color: #e11d48; color: #ffffff; font-size: 9px; font-weight: 800; padding: 1px 5px; border-radius: 10px; border: 2px solid #ffffff; min-width: 16px; text-align: center;">{{ unreadCount }}</span>
+      </div>
+           <span>Abiso</span>
+      </button>
+
+    <button type="button" class="fb-nav-btn" (click)="goToProfile(); $event.stopPropagation()">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>Profile</span>
+    </button>
+
+  </div>
+</ion-footer>

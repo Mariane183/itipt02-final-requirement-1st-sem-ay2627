@@ -1,0 +1,84 @@
+<ion-content class="complaint-content">
+  <div class="complaint-container">
+    
+    <div class="header-title">
+      <h2>File a Complaints</h2>
+      <p>Submit your complaints</p>
+    </div>
+
+    <div class="form-card">
+      
+     
+      <ion-item class="custom-item">
+        <ion-input label="Name of Respondent" labelPlacement="stacked" [(ngModel)]="respondentName" placeholder="Name here"></ion-input>
+      </ion-item>
+
+  
+      <ion-item class="custom-item">
+        <ion-textarea label="Complaint Details" labelPlacement="stacked" [(ngModel)]="complaintDetails" placeholder="Ikwento ang pangyayari..." rows="4"></ion-textarea>
+      </ion-item>
+
+     
+      <div class="evidence-section">
+      
+        <input #fileInput type="file" accept="image/*" capture="environment" id="fileInput" style="display: none;" (change)="onFileSelected($event)">
+        
+        <button type="button" class="camera-btn" (click)="fileInput.click()">
+          <ion-icon name="camera-outline"></ion-icon>
+          <span> Evidence</span>
+        </button>
+
+     
+        <div class="image-preview-box" *ngIf="evidenceImage">
+          <img [src]="evidenceImage" alt="Evidence Preview" />
+          
+          <button type="button" class="remove-img-btn" (click)="removePhoto()">
+            <ion-icon name="trash-outline"></ion-icon>
+            <span>Remove Picture</span>
+          </button>
+        </div>
+      </div>
+
+      <button type="button" class="standard-submit-btn" (click)="onSubmitComplaint()">
+        <ion-icon name="send-outline"></ion-icon>
+        <span>Submit complaints</span>
+      </button>
+
+    </div>
+  </div>
+</ion-content>
+
+
+<div class="fb-fixed-footer">
+  <div class="fb-nav-container">
+    
+    <button type="button" class="fb-nav-btn" (click)="goToHome(); $event.stopPropagation()">
+      <ion-icon name="home-outline"></ion-icon>
+      <span>Home</span>
+    </button>
+
+    <button type="button" class="fb-nav-btn active-btn" (click)="goToComplaint(); $event.stopPropagation()">
+      <ion-icon name="document-text-outline"></ion-icon>
+      <span>Complaints</span>
+    </button>
+
+    <button type="button" class="fb-nav-btn" (click)="goToMyComplaints(); $event.stopPropagation()">
+      <ion-icon name="list-outline"></ion-icon>
+      <span>List</span>
+    </button>
+
+    <button type="button" class="fb-nav-btn" (click)="goToNotifications(); $event.stopPropagation()">
+      <div class="icon-wrapper" style="position: relative; display: flex; align-items: center; justify-content: center;">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <span class="fb-badge" *ngIf="unreadCount > 0" style="position: absolute; top: -6px; right: -10px; background-color: #e11d48; color: #ffffff; font-size: 9px; font-weight: 800; padding: 1px 5px; border-radius: 10px; border: 2px solid #ffffff; min-width: 16px; text-align: center;">{{ unreadCount }}</span>
+      </div>
+      <span>Notification</span>
+    </button>
+
+    <button type="button" class="fb-nav-btn" (click)="goToProfile(); $event.stopPropagation()">
+      <ion-icon name="person-outline"></ion-icon>
+      <span>Profile</span>
+    </button>
+
+  </div>
+</div>
