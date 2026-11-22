@@ -1,0 +1,77 @@
+<ion-content class="signup-content ion-padding">
+  <ion-grid class="ion-height-100 ion-justify-content-center ion-align-items-center">
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100%;">
+      <ion-col size="12" size-sm="8" size-md="6" size-lg="4">
+        
+        <div class="signup-container">
+          <div class="signup-header">
+            <h2>Resident Registration</h2>
+            <p>Lumikha ng iyong account para sa mga reklamo</p>
+          </div>
+
+          <div>
+            <!-- Full Name -->
+            <ion-item lines="solid" class="custom-item">
+              <ion-input 
+                label="Full Name" 
+                labelPlacement="floating" 
+                type="text" 
+                [(ngModel)]="fullName"
+                name="fullName"
+                placeholder="Ilagay ang iyong buong pangalan">
+              </ion-input>
+            </ion-item>
+
+            <!-- Phone Number -->
+            <ion-item lines="solid" class="custom-item" style="margin-top: 12px;">
+              <ion-input 
+                label="Phone Number" 
+                labelPlacement="floating" 
+                type="tel" 
+                [(ngModel)]="phoneNumber"
+                name="phoneNumber"
+                placeholder="09XXXXXXXXX">
+              </ion-input>
+            </ion-item>
+
+            <!-- Email Address -->
+            <ion-item lines="solid" class="custom-item" style="margin-top: 12px;">
+              <ion-input 
+                label="Email Address" 
+                labelPlacement="floating" 
+                type="email" 
+                [(ngModel)]="email"
+                name="email"
+                placeholder="Ilagay ang iyong email">
+              </ion-input>
+            </ion-item>
+
+            <!-- Password -->
+            <ion-item lines="solid" class="custom-item" style="margin-top: 12px;">
+              <ion-input 
+                label="Password" 
+                labelPlacement="floating" 
+                type="password" 
+                [(ngModel)]="password"
+                name="password"
+                placeholder="Gumawa ng password">
+                <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+              </ion-input>
+            </ion-item>
+
+            <!-- Register Button -->
+            <button type="button" class="standard-submit-btn" (click)="onRegister()">
+              Mag-register
+            </button>
+
+            <!-- Papuntang Login Button -->
+            <button type="button" class="standard-login-btn" (click)="goToLogin()">
+              May account na? Mag-login
+            </button>
+          </div>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
