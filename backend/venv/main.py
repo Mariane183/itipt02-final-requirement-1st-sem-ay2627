@@ -15,6 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 def get_db_connection():
     try:
         connection = mysql.connector.connect(
@@ -30,16 +31,24 @@ def get_db_connection():
 
 
 def write_audit_log(conn, action: str, details: str, user_id: Optional[int] = None):
-    """Mag-insert ng log entry sa audit_logs (user_id, action, details, created_at)."""
+    """Mag-insert ng log entry sa audit_logs gamit ang valid user_id mula sa users table."""
     try:
         resolved_user_id = user_id
         if resolved_user_id is None:
             u_cur = conn.cursor()
-            u_cur.execute("SELECT user_id FROM users ORDER BY user_id ASC LIMIT 1")
+            u_cur.execute(
+                """
+                SELECT user_id FROM users
+                ORDER BY CASE WHEN LOWER(role) = 'admin' THEN 0 ELSE 1 END, user_id ASC
+                LIMIT 1
+                """
+            )
             row = u_cur.fetchone()
             u_cur.close()
-            if row:
-                resolved_user_id = row[0]
+            if not row:
+                print("Audit log skipped: no user record in the users table.")
+                return
+            resolved_user_id = row[0]
 
         log_cur = conn.cursor()
         log_cur.execute(
@@ -62,9 +71,11 @@ class SignupModel(BaseModel):
     email: str
     password: str
 
+
 class LoginModel(BaseModel):
     username: str
     password: str
+
 
 class ComplaintModel(BaseModel):
     user_id: int
@@ -73,13 +84,16 @@ class ComplaintModel(BaseModel):
     complaint_details: str
     evidence_image: Optional[str] = None
 
+
 class StatusUpdateModel(BaseModel):
     status: Optional[str] = None
     hearing_notes: Optional[str] = None
 
+
 class ComplaintUpdate(BaseModel):
     status: Optional[str] = None
     hearing_notes: Optional[str] = None
+
 
 class ArchiveUpdateModel(BaseModel):
     is_archived: bool
@@ -136,6 +150,36 @@ def login(data: LoginModel):
             "user_id": user['user_id'],
             "role": user['role'],
             "username": user['username']
+        }
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    finally:
+        cursor.close()
+        conn.close()
+
+
+@app.post("/api/admin/login")
+def admin_login(data: LoginModel):
+    conn = get_db_connection()
+    if not conn:
+        raise HTTPException(status_code=500, detail="Database connection failed")
+
+    cursor = conn.cursor(dictionary=True)
+    try:
+        query = "SELECT * FROM users WHERE username = %s AND password = %s AND LOWER(role) = 'admin'"
+        cursor.execute(query, (data.username, data.password))
+        admin_user = cursor.fetchone()
+
+        if not admin_user:
+            raise HTTPException(status_code=401, detail="Invalid admin credentials or unauthorized role.")
+
+        return {
+            "message": "Admin Login Successful!",
+            "user_id": admin_user['user_id'],
+            "role": admin_user['role'],
+            "username": admin_user['username']
         }
     except HTTPException as he:
         raise he
@@ -344,6 +388,7 @@ def toggle_archive_complaint(complaint_id: int, data: ArchiveUpdateModel):
         cursor.close()
         conn.close()
 
+
 @app.get("/api/audit-logs")
 def get_audit_logs():
     conn = get_db_connection()
@@ -360,34 +405,3 @@ def get_audit_logs():
     finally:
         cursor.close()
         conn.close()
-def write_audit_log(conn, action: str, details: str, user_id: Optional[int] = None):
-    """Mag-insert ng log entry sa audit_logs gamit ang valid user_id mula sa users table."""
-    try:
-        resolved_user_id = user_id
-        if resolved_user_id is None:
-            u_cur = conn.cursor()
-            u_cur.execute(
-                """
-                SELECT user_id FROM users
-                ORDER BY CASE WHEN LOWER(role) = 'admin' THEN 0 ELSE 1 END, user_id ASC
-                LIMIT 1
-                """
-            )
-            row = u_cur.fetchone()
-            u_cur.close()
-            if not row:
-                print("Audit log skipped: no user record in the list.")
-                return
-            resolved_user_id = row[0]
-
-        log_cur = conn.cursor()
-        log_cur.execute(
-            """
-            INSERT INTO audit_logs (user_id, action, details, created_at)
-            VALUES (%s, %s, %s, %s)
-            """,
-            (resolved_user_id, action, details, datetime.now())
-        )
-        log_cur.close()
-    except Exception as e:
-        print(f"Audit log error: {e}")
