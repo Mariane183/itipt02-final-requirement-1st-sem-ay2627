@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AuditService } from '../services/audit';
+import { AuditService } from './audit service';
 
 export interface CaseItem {
   id: string;
