@@ -21,7 +21,7 @@ def get_db_connection():
             host="localhost",
             user="root",
             password="",
-            database="barangay_eblotter_db"
+            database="barangay-complaints_db"
         )
         return connection
     except Exception as e:
