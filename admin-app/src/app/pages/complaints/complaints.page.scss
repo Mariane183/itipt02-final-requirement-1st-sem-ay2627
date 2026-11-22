@@ -1,0 +1,204 @@
+
+ion-content {
+  --background: #f8fafc;
+}
+
+.page-container {
+  background-color: #f8fafc;
+  color: #0f172a;
+  min-height: 100%;
+  padding: 16px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #0f172a;
+}
+
+.complaint-card {
+  background: #ffffff !important;
+  color: #0f172a;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .card-info {
+    h3 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+      font-weight: bold;
+      color: #0f172a;
+    }
+
+    p {
+      margin: 4px 0;
+      color: #334155;
+    }
+  }
+}
+
+.blotter-details-box {
+  margin-top: 8px;
+  font-size: 12px;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 8px;
+  border-radius: 6px;
+  color: #1e3a8a;
+}
+
+.history-box {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 8px;
+  background: rgba(0, 0, 0, 0.03);
+  padding: 8px;
+  border-radius: 6px;
+
+  ul {
+    margin: 2px 0 0 15px;
+    padding: 0;
+  }
+}
+
+.badge-container {
+  margin-top: 10px;
+}
+
+.update-form-box {
+  background: #f1f5f9 !important;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+  }
+}
+
+.input-wrapper {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 4px 8px;
+
+  .native-select,
+  .native-input,
+  .native-textarea {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: #000000 !important;
+    font-size: 13px;
+    outline: none;
+    padding: 6px 0;
+    font-family: inherit;
+
+    &::placeholder {
+      color: #94a3b8;
+    }
+  }
+
+  .native-textarea {
+    resize: vertical;
+  }
+}
+
+
+body.dark {
+  ion-content {
+    --background: #0f172a;
+  }
+
+  .page-container {
+    background-color: #0f172a;
+    color: #f8fafc;
+  }
+
+  .section-title {
+    color: #f8fafc;
+  }
+
+  .complaint-card {
+    background: #1e293b !important;
+    color: #f8fafc;
+    border: 1px solid #334155;
+
+    .card-info {
+      h3 {
+        color: #ffffff;
+      }
+
+      p {
+        color: #cbd5e1;
+      }
+    }
+  }
+
+  .blotter-details-box {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+  }
+
+  .history-box {
+    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .update-form-box {
+    background: #0f172a !important;
+    border: 1px solid #334155;
+
+    .form-label {
+      color: #94a3b8;
+    }
+  }
+
+  .input-wrapper {
+    background: #1e293b !important;
+    border: 1px solid #475569;
+
+    .native-select,
+    .native-input,
+    .native-textarea {
+      color: #ffffff !important;
+
+      &::placeholder {
+        color: #64748b;
+      }
+    }
+
+    .native-select option {
+      background: #1e293b;
+      color: #ffffff;
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+
+  .save-btn {
+    flex: 1;
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .cfa-btn {
+    margin: 0;
+    font-size: 12px;
+  }
+}

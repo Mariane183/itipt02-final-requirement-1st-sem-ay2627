@@ -1,0 +1,115 @@
+.logs-content {
+  --background: #f4f5f8;
+  --padding-bottom: 90px;
+}
+.back-btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 8px 12px; 
+  
+  ion-icon {
+    font-size: 24px;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.header-toolbar {
+  --background: #ffffff;
+  
+  .header-title {
+    color: #333;
+    font-weight: bold;
+  }
+}
+
+.logs-container {
+  .section-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 15px;
+  }
+
+  .log-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+
+    .log-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+
+      .admin-user {
+        font-weight: bold;
+        font-size: 14px;
+        color: #3880ff;
+      }
+
+      .log-time {
+        font-size: 11px;
+        color: #888;
+      }
+    }
+
+    .log-action {
+      font-size: 13px;
+      color: #555;
+      margin: 0;
+      line-height: 1.4;
+    }
+  }
+}
+.custom-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  background-color: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 99999;
+  pointer-events: auto;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+
+  .nav-item {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #7a7a7a;
+    flex: 1;
+    height: 100%;
+    font-size: 11px;
+    cursor: pointer;
+    pointer-events: auto;
+
+    ion-icon {
+      font-size: 24px;
+      margin-bottom: 2px;
+    }
+
+    &.active {
+      color: #3880ff;
+    }
+
+    &:hover {
+      color: #3880ff;
+    }
+  }
+}
