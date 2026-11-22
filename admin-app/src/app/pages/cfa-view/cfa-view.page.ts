@@ -20,7 +20,7 @@ import {
   imports: [
     CommonModule, RouterModule,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonButtons, IonIcon, IonCard, IonCardContent, IonButton
+     IonIcon, IonCard, IonCardContent, IonButton
   ]
 })
 export class CfaViewPage implements OnDestroy {
