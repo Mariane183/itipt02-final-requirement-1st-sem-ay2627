@@ -1,0 +1,182 @@
+.my-complaints-content {
+  --background: #f0f7ff !important;
+}
+
+.container {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+
+  .header-title {
+    text-align: center;
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 22px;
+      font-weight: bold;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    p {
+      font-size: 13px;
+      color: #64748b;
+      margin: 0;
+    }
+  }
+
+  .state-box, .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #bae6fd;
+    margin-top: 20px;
+
+    ion-icon {
+      font-size: 48px;
+      color: #0284c7;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: #334155;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .add-btn {
+      background-color: #0284c7;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #0369a1;
+      }
+    }
+  }
+
+  .complaint-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .complaint-card {
+      background: #ffffff;
+      border: 1px solid #bae6fd;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(14, 165, 233, 0.05);
+
+      .card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #f1f5f9;
+        padding-bottom: 8px;
+
+        .case-id {
+          font-weight: 600;
+          color: #0f172a;
+          font-size: 13px;
+        }
+
+        .status-badge {
+          font-size: 11px;
+          font-weight: 600;
+          padding: 4px 10px;
+          border-radius: 20px;
+
+          &.pending {
+            background-color: #fef3c7;
+            color: #d97706;
+          }
+
+          &.progress {
+            background-color: #e0f2fe;
+            color: #0284c7;
+          }
+
+          &.resolved {
+            background-color: #dcfce7;
+            color: #16a34a;
+          }
+        }
+      }
+
+      .card-body {
+        p {
+          font-size: 13px;
+          color: #334155;
+          margin: 4px 0;
+
+          strong {
+            color: #0f172a;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Ionic Native Footer Styling */
+.fb-native-footer {
+  background: #ffffff !important;
+  border-top: 1px solid #e2e8f0 !important;
+  height: 56px !important;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.fb-nav-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  .fb-nav-btn {
+    background: transparent !important;
+    border: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1 !important;
+    height: 100% !important;
+    cursor: pointer !important;
+    color: #64748b !important;
+
+    ion-icon, span {
+      pointer-events: none !important; /* Para hindi masapol ng hiwalay na click ang loob */
+    }
+
+    ion-icon {
+      font-size: 20px !important;
+      margin-bottom: 2px !important;
+    }
+
+    span {
+      font-size: 10px !important;
+      font-weight: 500 !important;
+    }
+
+    &:hover, &:active {
+      color: #0284c7 !important;
+    }
+  }
+
+  .active-btn {
+    color: #0284c7 !important;
+  }
+
+  .logout-nav-btn {
+    color: #dc2626 !important;
+  }
+}
