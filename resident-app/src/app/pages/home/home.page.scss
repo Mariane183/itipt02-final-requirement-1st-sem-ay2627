@@ -1,0 +1,122 @@
+.home-content {
+  --background: #f0f7ff !important;
+  --padding-bottom: 90px !important;
+}
+
+.home-container {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+
+  .home-header {
+    text-align: center;
+    margin-bottom: 24px;
+
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #64748b;
+      margin: 0;
+
+      .highlight-name {
+        color: #0284c7;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .home-body {
+    .welcome-card {
+      background: #ffffff;
+      border: 1px solid #bae6fd;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 16px rgba(14, 165, 233, 0.06);
+      text-align: center;
+
+      h3 {
+        font-size: 18px;
+        font-weight: bold;
+        color: #0f172a;
+        margin-bottom: 12px;
+
+        .highlight-name {
+          color: #0284c7;
+        }
+      }
+
+      p {
+        font-size: 14px;
+        color: #334155;
+        line-height: 1.5;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.fb-fixed-footer {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 56px !important;
+  background: #ffffff !important;
+  border-top: 1px solid #e2e8f0 !important;
+  z-index: 2147483647 !important;
+  pointer-events: auto !important;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+.fb-nav-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto !important;
+
+  .fb-nav-btn {
+    background: transparent !important;
+    border: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 1 !important;
+    height: 100% !important;
+    cursor: pointer !important;
+    color: #64748b !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+
+    ion-icon, span {
+      pointer-events: none !important;
+    }
+
+    ion-icon {
+      font-size: 20px !important;
+      margin-bottom: 2px !important;
+    }
+
+    span {
+      font-size: 10px !important;
+      font-weight: 500 !important;
+    }
+
+    &:hover, &:active {
+      color: #0284c7 !important;
+    }
+  }
+
+  .active-btn {
+    color: #0284c7 !important;
+  }
+}
