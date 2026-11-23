@@ -2,13 +2,13 @@
   <div class="home-container">
     <div class="home-header">
       <h2>Barangay Portal</h2>
-      <p>Maligayang pagdating, <strong class="highlight-name">{{ residentName }}</strong>!</p>
+      <p>Welcome, <strong class="highlight-name">{{ residentName }}</strong>!</p>
     </div>
 
     <div class="home-body">
       <div class="welcome-card">
-        <h3>Magandang Araw, <span class="highlight-name">{{ residentName }}</span>!</h3>
-        <p>Gamitin ang menu sa ibaba para sa mabilis na pag-navigate ng iyong mga reklamo at abiso.</p>
+        <h3>Good Day!, <span class="highlight-name">{{ residentName }}</span>!</h3>
+        <p>Kindly use the buttons in the buttom to proceed.</p>
       </div>
     </div>
   </div>
@@ -23,12 +23,12 @@
 
     <button type="button" class="fb-nav-btn" (click)="goToComplaint()">
       <ion-icon name="document-text-outline"></ion-icon>
-      <span>Reklamo</span>
+      <span>Complaints</span>
     </button>
 
     <button type="button" class="fb-nav-btn" (click)="goToMyComplaints()">
       <ion-icon name="list-outline"></ion-icon>
-      <span>Listahan</span>
+      <span>List</span>
     </button>
 
     <button type="button" class="fb-nav-btn" (click)="goToNotifications()">
@@ -36,7 +36,7 @@
         <ion-icon name="notifications-outline"></ion-icon>
         <span class="fb-badge" *ngIf="unreadCount > 0" style="position: absolute; top: -6px; right: -10px; background-color: #e11d48; color: #ffffff; font-size: 9px; font-weight: 800; padding: 1px 5px; border-radius: 10px; border: 2px solid #ffffff; min-width: 16px; text-align: center;">{{ unreadCount }}</span>
       </div>
-      <span>Abiso</span>
+      <span>Notification</span>
     </button>
 
     <button type="button" class="fb-nav-btn" (click)="goToProfile()">
