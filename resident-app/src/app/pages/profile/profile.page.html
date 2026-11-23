@@ -1,25 +1,25 @@
 <ion-content class="profile-content ion-padding">
   <div class="profile-container">
     
-    <!-- Header Card na may Avatar -->
+  
     <div class="profile-header-card">
       <div class="avatar-circle">
         <ion-icon name="person-outline"></ion-icon>
       </div>
       <h2>{{ residentName }}</h2>
-      <span class="role-badge">Residente ng Barangay</span>
+      <span class="role-badge">Barangay Resident</span>
     </div>
 
-    <!-- Detalye ng Account -->
+    
     <div class="profile-details-card">
-      <h3>Impormasyon ng Account</h3>
+      <h3> Account Information</h3>
       
       <div class="info-item">
         <div class="info-icon">
           <ion-icon name="person-outline"></ion-icon>
         </div>
         <div class="info-text">
-          <span class="label">Buong Pangalan</span>
+          <span class="label">Full Name </span>
           <span class="value">{{ residentName }}</span>
         </div>
       </div>
@@ -49,24 +49,24 @@
           <ion-icon name="shield-checkmark-outline"></ion-icon>
         </div>
         <div class="info-text">
-          <span class="label">Uri ng Account</span>
+          <span class="label">Account type</span>
           <span class="value capitalize">{{ userRole }}</span>
         </div>
       </div>
 
     </div>
 
-    <!-- Logout Button -->
+    
     <div class="logout-container">
       <button type="button" class="logout-btn" (click)="onLogout()">
-        <ion-icon name="log-out-outline"></ion-icon> Mag-log Out
+        <ion-icon name="log-out-outline"></ion-icon> Logout
       </button>
     </div>
 
   </div>
 </ion-content>
 
-<!-- Fixed Bottom Navigation Bar (May Facebook-style Red Badge) -->
+
 <div class="fb-fixed-footer">
   <div class="fb-nav-container">
     
@@ -77,12 +77,12 @@
 
     <button type="button" class="fb-nav-btn" (click)="goToComplaint()">
       <ion-icon name="document-text-outline"></ion-icon>
-      <span>Reklamo</span>
+      <span>Complaints</span>
     </button>
 
     <button type="button" class="fb-nav-btn" (click)="goToMyComplaints()">
       <ion-icon name="list-outline"></ion-icon>
-      <span>Listahan</span>
+      <span>List</span>
     </button>
 
     <button type="button" class="fb-nav-btn" (click)="goToNotifications()">
@@ -90,7 +90,7 @@
         <ion-icon name="notifications-outline"></ion-icon>
         <span class="fb-badge" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
       </div>
-      <span>Abiso</span>
+      <span>Notifiction</span>
     </button>
 
     <button type="button" class="fb-nav-btn active-btn" (click)="goToProfile()">

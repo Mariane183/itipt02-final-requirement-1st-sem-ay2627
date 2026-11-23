@@ -6,11 +6,11 @@
         <div class="login-container">
           <div class="login-header">
             <h2>Resident Login</h2>
-            <p>Mag-log in para pamahalaan ang iyong mga reklamo</p>
+            <p>Login to manage your complaints</p>
           </div>
 
           <div>
-            <!-- Full Name / Username -->
+           
             <ion-item lines="solid" class="custom-item">
               <ion-input 
                 label="Full Name" 
@@ -18,11 +18,11 @@
                 type="text" 
                 [(ngModel)]="username"
                 name="username"
-                placeholder="Ilagay ang iyong buong pangalan">
+                placeholder="Fullnme">
               </ion-input>
             </ion-item>
 
-            <!-- Password -->
+           
             <ion-item lines="solid" class="custom-item" style="margin-top: 12px;">
               <ion-input 
                 label="Password" 
@@ -30,19 +30,19 @@
                 type="password" 
                 [(ngModel)]="password"
                 name="password"
-                placeholder="Ilagay ang password">
+                placeholder="Input password">
                 <ion-input-password-toggle slot="end"></ion-input-password-toggle>
               </ion-input>
             </ion-item>
 
-            <!-- Login Button -->
+            
             <button type="button" class="standard-submit-btn" (click)="onLogin()">
-              Mag-log in
+              Login
             </button>
 
-            <!-- Papuntang Signup Button -->
+            
             <button type="button" class="standard-signup-btn" (click)="goToSignup()">
-              Wala pang account? Mag-register
+              No account? Register here
             </button>
           </div>
         </div>

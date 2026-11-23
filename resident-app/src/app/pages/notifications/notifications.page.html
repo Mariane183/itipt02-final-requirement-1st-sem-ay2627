@@ -2,23 +2,23 @@
   <div class="notifications-container">
     
     <div class="header-title">
-      <h2>Mga Abiso at Update</h2>
-      <p>Subaybayan ang mga pagbabago sa iyong isinumiteng reklamo</p>
+      <h2>Notifications and update</h2>
+      <p>Track your submitted complaintts</p>
     </div>
 
     <div class="notif-banner" *ngIf="unreadCount > 0">
-      <span>May {{ unreadCount }} bagong update sa iyong reklamo!</span>
+      <span>There is {{ unreadCount }}New update in your complaints!</span>
       <ion-button size="small" (click)="markAllAsRead()">Mark as read</ion-button>
     </div>
 
-    <!-- Empty State kung walang abiso -->
+   
     <div *ngIf="notifications.length === 0" class="empty-state">
       <ion-icon name="notifications-circle-outline"></ion-icon>
-      <h3>Walang Pang Abiso</h3>
-      <p>Wala pang update o pagbabago sa iyong mga isinumiteng reklamo.</p>
+      <h3>Nothing here</h3>
+      <p>No update on your complaints .</p>
     </div>
 
-    <!-- Listahan ng mga Update -->
+    
     <div *ngIf="notifications.length > 0" class="notification-list">
       <div *ngFor="let item of notifications" class="notification-card" [ngClass]="{'unread': !item.read}">
         <div class="card-icon" [ngClass]="{
@@ -48,7 +48,6 @@
   </div>
 </ion-content>
 
-<!-- Fixed Bottom Navigation Bar (May Facebook-style Red Badge) -->
 <div class="fb-fixed-footer">
   <div class="fb-nav-container">
     
@@ -59,21 +58,21 @@
 
     <button type="button" class="fb-nav-btn" (click)="goToComplaint()">
       <ion-icon name="document-text-outline"></ion-icon>
-      <span>Reklamo</span>
+      <span>Complaints</span>
     </button>
 
     <button type="button" class="fb-nav-btn" (click)="goToMyComplaints()">
       <ion-icon name="list-outline"></ion-icon>
-      <span>Listahan</span>
+      <span>List</span>
     </button>
 
-    <!-- Abiso Button na may Facebook-style Red Notification Badge -->
+   
     <button type="button" class="fb-nav-btn active-btn notification-tab-btn" (click)="goToNotifications()">
       <div class="icon-wrapper">
         <ion-icon name="notifications-outline"></ion-icon>
         <span class="fb-badge" *ngIf="unreadCount > 0">{{ unreadCount }}</span>
       </div>
-      <span>Abiso</span>
+      <span>Notification</span>
     </button>
 
     <button type="button" class="fb-nav-btn" (click)="goToProfile()">

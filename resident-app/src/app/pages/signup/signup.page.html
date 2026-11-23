@@ -6,11 +6,10 @@
         <div class="signup-container">
           <div class="signup-header">
             <h2>Resident Registration</h2>
-            <p>Lumikha ng iyong account para sa mga reklamo</p>
+            
           </div>
 
           <div>
-            <!-- Full Name -->
             <ion-item lines="solid" class="custom-item">
               <ion-input 
                 label="Full Name" 
@@ -18,11 +17,11 @@
                 type="text" 
                 [(ngModel)]="fullName"
                 name="fullName"
-                placeholder="Ilagay ang iyong buong pangalan">
+                placeholder="Full Name">
               </ion-input>
             </ion-item>
 
-            <!-- Phone Number -->
+            
             <ion-item lines="solid" class="custom-item" style="margin-top: 12px;">
               <ion-input 
                 label="Phone Number" 
@@ -34,7 +33,7 @@
               </ion-input>
             </ion-item>
 
-            <!-- Email Address -->
+            
             <ion-item lines="solid" class="custom-item" style="margin-top: 12px;">
               <ion-input 
                 label="Email Address" 
@@ -42,7 +41,7 @@
                 type="email" 
                 [(ngModel)]="email"
                 name="email"
-                placeholder="Ilagay ang iyong email">
+                placeholder="input email">
               </ion-input>
             </ion-item>
 
@@ -54,19 +53,19 @@
                 type="password" 
                 [(ngModel)]="password"
                 name="password"
-                placeholder="Gumawa ng password">
+                placeholder="password">
                 <ion-input-password-toggle slot="end"></ion-input-password-toggle>
               </ion-input>
             </ion-item>
 
-            <!-- Register Button -->
+           
             <button type="button" class="standard-submit-btn" (click)="onRegister()">
-              Mag-register
+              Register
             </button>
 
-            <!-- Papuntang Login Button -->
+            
             <button type="button" class="standard-login-btn" (click)="goToLogin()">
-              May account na? Mag-login
+              Already have an account? login
             </button>
           </div>
         </div>
